@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}Results for "{{ word|capitalize }}" - SpeakPeak Dictionary{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="mt-4 text-primary">Results For "{{ word|capitalize }}"</h1>
+        <a href="{{ url_for('home') }}" class="btn btn-primary mt-4">Search Again</a>
+    </div>
+    {% if pronunciations %}
+        <h2>Pronunciations:</h2>
+        <ul class="list-group mt-3">
+            {% for pronunciation in pronunciations %}
+                <li class="list-group-item">{{ pronunciation }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if definitions %}
+        <div class="definitions mt-3 p-4">
+            {% for definition in definitions %}
+                {% set sn_parts = definition[0].split('-') %}
+                <div class="definition-item mb-2 pb-2">
+                    <span class="definition-sn text-primary font-weight-bold" data-level="{{ sn_parts[0] }}">{{ sn_parts[1] }}</span>
+                    <span class="definition-dt text-dark mt-1">{{ definition[1] }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-danger">No definitions found.</p>
+    {% endif %}
+    {% if audio_url != "Audio pronunciation not available." %}
+        <!-- Section for audio pronunciation button -->
+        <div class="audio-pronunciation mt-3">
+            <p>Click the button to hear the pronunciation:</p>
+            <!-- Hidden input to store the audio URL -->
+            <input type="hidden" id="audio-url" value="{{ audio_url }}">
+            <!-- Button to trigger audio playback -->
+            <button class="btn btn-primary" onclick="playAudio()">Play Pronunciation</button>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Hidden audio player elements -->
+<audio id="audio-player" controls style="display:none;">
+    <source id="audio-source" src="" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+{% endblock %}
+
+{% block scripts %}
+
+function playAudio() {
+    // Get the audio URL from the hidden input field
+    let audioUrl = document.getElementById('audio-url').value;
+    console.log('Audio URL:', audioUrl); // Debug statement
+
+    // Get the audio player and source elements
+    let audioPlayer = document.getElementById('audio-player');
+    let audioSource = document.getElementById('audio-source');
+    
+    if (audioSource) {
+        // Set the audio source URL and play the audio
+        audioSource.src = audioUrl;
+        audioPlayer.load();
+        audioPlayer.play();
+
+        // Log a message when the audio playback ends
+        audioPlayer.onended = function() {
+            console.log('Audio playback ended.');
+        };
+    } else {
+        // Log an error if the audio source element is not found
+        console.error("audioSource is null");
+    }
+}
+
+{% endblock %}
+
+
+
+{% block style %}
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #ffecd2, #fcb69f);
+        color: #333;
+    }
+    h1 {
+        color: #3b5998;
+    }
+    .container {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 1s ease-in-out;
+    }
+    .definitions {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .definition-item {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        padding: 10px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        margin-bottom: 8px;
+        transition: background-color 0.3s ease;
+    }
+    .definition-item:hover {
+        background-color: #e3e3e3;
+    }
+    .definition-sn {
+        font-size: 1.1em;
+        color: #3b5998;
+    }
+    .definition-dt {
+        font-size: 1em;
+    }
+    .definition-sn[data-level="1"] {
+        margin-left: 0;
+    }
+    .definition-sn[data-level="2"] {
+        margin-left: 20px;
+    }
+    .definition-sn[data-level="3"] {
+        margin-left: 40px;
+    }
+    .btn-primary {
+        background-color: #28a745;
+        border-color: #28a745;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .btn-primary:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+{% endblock %}
+
+

@@ -1,0 +1,143 @@
+Project Directory Structure
+===========================
+
+project/
+├── app.py
+├── config.py
+├── run.py
+├── models.py
+├── static/
+├── templates/
+│   ├── base.html
+│   ├── home.html
+│   ├── results.html
+│   └── users/
+│       ├── login.html
+│       ├── signup.html
+├── users/
+│   ├── __init__.py
+│   ├── routes.py
+│   ├── forms.py
+└── words/
+    ├── __init__.py
+    ├── routes.py
+    ├── forms.py
+
+Module Descriptions
+===================
+
+app.py
+------
+Purpose: The main application file that initializes the Flask application, configures it, and registers blueprints.
+Responsibilities:
+- Initialize the Flask app.
+- Load configuration settings.
+- Set up database connection.
+- Register blueprints for user and word routes.
+- Define the before_request function to manage user session data.
+
+config.py
+---------
+Purpose: Configuration file for the Flask application.
+Responsibilities:
+- Define configuration settings such as database URI, secret key, and API key.
+
+run.py
+------
+Purpose: Entry point to run the Flask application.
+Responsibilities:
+- Run the Flask app.
+
+models.py
+---------
+Purpose: Define the database models and set up the database connection.
+Responsibilities:
+- Define SQLAlchemy models for users, words, pronunciations, translations, guest sessions, and search history.
+- Set up the connection to the database.
+
+users/
+------
+__init__.py
+-----------
+Purpose: Mark the users directory as a package.
+Responsibilities:
+- Make the directory a package.
+
+routes.py
+---------
+Purpose: Define routes related to user authentication.
+Responsibilities:
+- Handle user sign-up, login, and logout.
+
+forms.py
+--------
+Purpose: Define forms related to user authentication.
+Responsibilities:
+- Define forms for user sign-up and login.
+
+words/
+------
+__init__.py
+-----------
+Purpose: Mark the words directory as a package.
+Responsibilities:
+- Make the directory a package.
+
+routes.py
+---------
+Purpose: Define routes related to word searches.
+Responsibilities:
+- Handle word search and display results.
+
+forms.py
+--------
+Purpose: Define forms related to word searches.
+Responsibilities:
+- Define forms for searching words.
+
+Templates
+---------
+Purpose: Define the HTML structure for different pages.
+Responsibilities:
+- Create the base layout and extend it for specific pages.
+
+base.html
+---------
+Purpose: Base template for the application.
+
+home.html
+---------
+Purpose: Home page template.
+
+results.html
+------------
+Purpose: Results page template for displaying word definitions.
+
+users/login.html
+----------------
+Purpose: Login page template.
+
+users/signup.html
+-----------------
+Purpose: Signup page template.
+
+Summary
+-------
+- app.py: Main application file to initialize the Flask app, configure it, and register blueprints.
+- config.py: Configuration settings for the Flask application.
+- run.py: Entry point to run the Flask application.
+- models.py: Defines the database models and sets up the database connection.
+- users/: Contains user-related routes and forms.
+  - __init__.py: Marks the directory as a package.
+  - routes.py: Defines routes for user authentication (signup, login, logout).
+  - forms.py: Defines forms for user authentication.
+- words/: Contains word-related routes and forms.
+  - __init__.py: Marks the directory as a package.
+  - routes.py: Defines routes for word search and display results.
+  - forms.py: Defines forms for word search.
+- Templates: HTML files defining the structure of different pages.
+  - base.html: Base template for the application.
+  - home.html: Home page template.
+  - results.html: Results page template for displaying word definitions.
+  - users/login.html: Login page template.
+  - users/signup.html: Signup page template.

@@ -1,0 +1,77 @@
+.home-container {
+  background-image: url("../images/speakpeak-logo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100vh; /* Adjust height considering the navbar height */
+  display: flex;
+  justify-content: center; /* Centering the content horizontally */
+  align-items: center;
+  position: relative;
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+.overlay {
+  background: rgba(0, 0, 0, 0.6);
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+  padding: 50px;
+  border-radius: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.logo {
+  width: 150px;
+  height: auto;
+  animation: fadeIn 2s ease-in-out;
+}
+.home-container h1 {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+  animation: fadeInDown 1s ease-in-out;
+}
+.home-container p {
+  font-size: 1.5em;
+  animation: fadeInUp 1s ease-in-out;
+}
+.form-control {
+  max-width: 500px;
+  border: none;
+  border-radius: 0;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+.input-group-append .btn {
+  border-radius: 0;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  height: 100%; /* Ensures the button matches the input height */
+}
+.input-group-append .btn:hover {
+  background-color: #218838;
+  color: white;
+}
+.input-group-append .btn:focus, .form-control:focus {
+  box-shadow: none;
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}

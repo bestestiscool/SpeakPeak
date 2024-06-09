@@ -1,0 +1,9 @@
+# Ignore the _pycache_ directory
+__pycache__/
+
+.env
+
+summary/
+
+migrations/
+
