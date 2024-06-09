@@ -19,7 +19,6 @@ class Config:
     if not MW_API_KEY:
         raise ValueError("No MW_API_KEY set for Flask application. Please set the environment variable MW_API_KEY.")
 
-
 class DevelopmentConfig(Config):
     DEBUG = True
 

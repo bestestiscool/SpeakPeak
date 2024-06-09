@@ -1,24 +1,20 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from dotenv import load_dotenv
-import os
-
-# Load environment variables from .env file
-load_dotenv()
 
 db = SQLAlchemy()
 
-def create_app(config_name='default'):
+def create_app(config_name='development'):
     app = Flask(__name__, static_folder='static')
 
     if config_name == 'testing':
-        load_dotenv('.env.test')  # Load test-specific environment variables
         app.config.from_object('config.TestingConfig')
     elif config_name == 'production':
         app.config.from_object('config.ProductionConfig')
-    else:
+    elif config_name == 'development':
         app.config.from_object('config.DevelopmentConfig')
+    else:
+        raise ValueError(f"Unknown configuration: {config_name}")
 
     db.init_app(app)
     migrate = Migrate(app, db)
