@@ -35,4 +35,33 @@ All prerequisites and dependencies can be found in the `requirements.txt` file.
    git clone https://github.com/yourusername/speakpeak-dictionary.git
    cd speakpeak-dictionary
 
-1. **Clone the repository:**
+2. **Set up a virtual environment**
+
+   ```sh
+   python3 -m venv venv
+   source venv/bin/activate 
+ 
+3. **Install dependencies**
+   
+   ```sh
+   pip install -r requirements.txt
+
+4. **Set up environment variables**
+
+   ```sh
+   SECRET_KEY=your_secret_key
+   DATABASE_URL=postgresql:///speakpeak
+   TEST_DATABASE_URL=postgresql:///speakpeak_test
+   MW_API_KEY=your_merriam_webster_api_key
+   MW_API_BASE_URL=https://www.dictionaryapi.com/api/v3/references/collegiate/json/
+
+5. **Set up the database**
+
+   ```sh
+   createdb speakpeak
+   flask db upgrade
+
+6. **Run the application**
+
+   ```sh
+   flask run
