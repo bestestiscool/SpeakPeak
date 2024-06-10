@@ -4,7 +4,7 @@ SpeakPeak Dictionary is a web application that allows users to search for word d
 
 ## Deployment
 
-Check out the live application [here](https://speakpeak.onrender.com/words/search).
+Check out the live application [here](https://speakpeak-414m.onrender.com).
 
 ## Features
 
