@@ -92,9 +92,16 @@ def search():
 @words_blueprint.route('/results/<word>')
 def results(word):
     definitions, pronunciations, audio_url = get_word_definition(word)
-    if definitions:
-        return render_template('results.html', word=word, definitions=definitions, pronunciations=pronunciations, audio_url=audio_url)
-    else:
-        flash(f'No definition found for "{word}".')
-        return redirect(url_for('words.search'))
+    error_message = None  # Initialize error message variable
     
+    if not definitions:
+        error_message = f'No definition found for "{word}".'
+    
+    return render_template(
+        'results.html',
+        word=word,
+        definitions=definitions,
+        pronunciations=pronunciations,
+        audio_url=audio_url,
+        error_message=error_message
+    )
